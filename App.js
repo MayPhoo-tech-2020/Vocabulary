@@ -1,40 +1,86 @@
-import React from 'react';
-import { StyleSheet, TextInput, View, Button, Alert, SafeAreaView } from 'react-native';
-import Tts from 'react-native-tts';
+// Example: Example of SQLite Database in React Native
+// https://aboutreact.com/example-of-sqlite-database-in-react-native
+// Screen to view all the user*/
 
-export default function App() {
-   [text, onChangeText] = React.useState("Enter you want to hear words");
-  const speak = () =>{
-    const txt = enterText;
-    Tts.setDefaultRate(0.4);
-    Tts.setDefaultPitch(1.5);
-    Tts.speak(txt, {
-      androidParams: {
-        KEY_PARAM_PAN: -1,
-        KEY_PARAM_VOLUME: 0.5,
-        KEY_PARAM_STREAM: 'STREAM_MUSIC',
-      },
+import React, { useState, useEffect } from 'react';
+import { FlatList, Text, View, SafeAreaView } from 'react-native';
+import { openDatabase } from 'react-native-sqlite-storage';
+
+var db = openDatabase({ name: 'vocabulary.db', createFromLocation : 1})
+
+const ViewAllUser = () => {
+  let [flatListItems, setFlatListItems] = useState([]);
+
+  useEffect(() => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'SELECT * FROM gradeSevenVoc',
+        [],
+        (tx, results) => {
+          var temp = [];
+          for (let i = 0; i < results.rows.length; ++i)
+            temp.push(results.rows.item(i));
+            console.log("Name is "+results.rows.length);
+          setFlatListItems(temp);
+        }
+      );
     });
-    
-  };
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeText}
-        value={text, this.enterText=text}
-      />
-      <Button title="Press to hear some words" onPress={speak}/>
-    </View>
-    
-  );
-}
+  }, []);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  let listViewItemSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 0.2,
+          width: '100%',
+          backgroundColor: '#808080'
+        }}
+      />
+    );
+  };
+
+  let listItemView = (item) => {
+    return (
+      <View
+        key={item.user_id}
+        style={{ backgroundColor: 'white', padding: 20 }}>
+        <Text>Id: {item.unit}</Text>
+        <Text>Voc_Eng: {item.voc_eng}</Text>
+        <Text>Def_Eng: {item.def_eng}</Text>
+      </View>
+    );
+  };
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: 'white' }}>
+        <View style={{ flex: 1 }}>
+          <FlatList
+            data={flatListItems}
+            ItemSeparatorComponent={listViewItemSeparator}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => listItemView(item)}
+          />
+        </View>
+        <Text
+          style={{
+            fontSize: 18,
+            textAlign: 'center',
+            color: 'grey'
+          }}>
+          Example of SQLite Database in React Native
+        </Text>
+        <Text
+          style={{
+            fontSize: 16,
+            textAlign: 'center',
+            color: 'grey'
+          }}>
+          www.aboutreact.com
+        </Text>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+export default ViewAllUser;

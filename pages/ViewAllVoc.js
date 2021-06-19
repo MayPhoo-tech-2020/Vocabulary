@@ -45,8 +45,13 @@ const ViewAllVoc = () => {
         key={item.id}
         style={{ backgroundColor: 'white', padding: 20 }}>
         <Text>Unit: {item.unit}</Text>
-        <Text>{item.voc_eng}({item.voc_type}) {item.voc_mm}</Text>
-        <Text>Description: {item.voc_def}</Text>
+        <Text>{item.voc_eng}({item.voc_type})</Text>
+        <Text>Meaning</Text>
+        <Text>{item.voc_meaning}</Text>
+        <Text>Translation</Text>
+        <Text> {item.voc_mm}</Text>
+        <Text> Example </Text>
+        <Text>{item.voc_example}</Text>
       </View>
     );
   };

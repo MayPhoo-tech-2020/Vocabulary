@@ -3,7 +3,7 @@
 // Screen to view all the user*/
 
 import React, { useState, useEffect } from 'react';
-import { FlatList, Text, View, SafeAreaView } from 'react-native';
+import { FlatList, Text, View, SafeAreaView, StyleSheet, Animated } from 'react-native';
 import { openDatabase } from 'react-native-sqlite-storage';
 
 var db = openDatabase({ name: 'vocabulary.db', createFromLocation : 1})
@@ -43,15 +43,27 @@ const ViewAllVoc = () => {
     return (
       <View
         key={item.id}
-        style={{ backgroundColor: 'white', padding: 20 }}>
-        <Text>Unit: {item.unit}</Text>
-        <Text>{item.voc_eng}({item.voc_type})</Text>
-        <Text>Meaning</Text>
-        <Text>{item.voc_meaning}</Text>
-        <Text>Translation</Text>
-        <Text> {item.voc_mm}</Text>
-        <Text> Example </Text>
-        <Text>{item.voc_example}</Text>
+        style={styles.container}>
+         <View style={styles.unitContainer}>
+        <Text style={styles.txtTitle}> Unit {item.unit}</Text>
+      </View>
+      <View style={styles.wordCountContainer}>
+       <Text>50 words </Text>
+       <View style={styles.progressBar}>
+        
+         <View style={{backgroundColor:"blue",width:'10%'}}></View>
+      </View>
+       <Text> 25/50</Text>
+      </View>
+      <View  style={styles.detailContainer}>
+        <Text style={styles.txtVoc}>{item.voc_eng} ({item.voc_type})</Text>
+        <Text style={styles.txtBold}> Meaning </Text>
+        <Text style={styles.txtParagraph}>{item.voc_meaning}</Text>
+         <Text style={styles.txtBold}> Translation </Text>
+        <Text style={styles.txtParagraph}>{item.voc_mm}</Text>
+         <Text style={styles.txtBold}> Example</Text>
+        <Text style={styles.txtParagraph}>{item.voc_example}</Text>
+      </View>
       </View>
     );
   };
@@ -72,4 +84,50 @@ const ViewAllVoc = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 4
+   },
+   unitContainer: {
+     flex: 0.05
+   },
+   wordCountContainer:{
+     flex: 0.1,
+     justifyContent: "center",
+     alignItems: "center",
+     flexDirection: 'row'
+   },
+   detailContainer:{
+     flex: 0.85,
+   },
+   txtTitle:{
+     textAlign: "center",
+     fontSize: 20
+   },
+   txtSubTitle:{
+     fontSize: 16
+   },
+   txtParagraph:{
+    fontSize: 14
+   },
+   txtVoc:{
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center"
+   },
+   txtBold:{
+    fontSize: 14,
+    fontWeight: "bold"
+   },
+   progressBar: {
+      flexDirection: 'row',
+      height: 10,
+      width: '50%',
+      backgroundColor: 'white',
+      borderColor: '#000',
+      borderWidth: 2,
+      borderRadius: 5
+    }
+  });
 export default ViewAllVoc;

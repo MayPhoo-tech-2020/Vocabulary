@@ -3,7 +3,7 @@
 // Screen to view all the user*/
 
 import React, { useState, useEffect } from 'react';
-import { FlatList, Text, View, SafeAreaView, StyleSheet, Animated } from 'react-native';
+import { FlatList, Text, View, SafeAreaView, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { openDatabase } from 'react-native-sqlite-storage';
 
 var db = openDatabase({ name: 'vocabulary.db', createFromLocation : 1})
@@ -64,6 +64,22 @@ const ViewAllVoc = () => {
          <Text style={styles.txtBold}> Example</Text>
         <Text style={styles.txtParagraph}>{item.voc_example}</Text>
       </View>
+      <View style={styles.btnContainer}>
+      <TouchableOpacity
+        style={styles.tinyLogo}>
+        <Image
+        style={styles.tinyLogo}
+        source={require('@icons/ic_backward.png')}
+        ></Image>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.tinyLogo}>
+        <Image
+        style={styles.tinyLogo}
+        source={require('@icons/ic_forward.png')}
+        ></Image>
+      </TouchableOpacity>
+      </View>
       </View>
     );
   };
@@ -87,20 +103,40 @@ const ViewAllVoc = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 4
+    padding: 5,
+    borderWidth: 1,
+    borderRadius: 5,
+    justifyContent: "center"
    },
    unitContainer: {
-     flex: 0.05
+     flex: 0.08
    },
    wordCountContainer:{
-     flex: 0.1,
+     flex: 0.15,
      justifyContent: "center",
      alignItems: "center",
      flexDirection: 'row'
    },
    detailContainer:{
-     flex: 0.85,
+     flex: 0.6,
+     backgroundColor:"skyblue",
+     borderWidth: 1,
+     borderRadius: 30,
+     padding:20,
    },
+   btnContainer:{
+   flex:0.2,
+   flexDirection: 'row',
+   justifyContent: "center",
+   alignItems: "center",
+   
+   
+   },
+   tinyLogo: {
+      width: 50,
+      height: 50,
+      marginHorizontal: 20
+    },
    txtTitle:{
      textAlign: "center",
      fontSize: 20
@@ -115,10 +151,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center"
+    
    },
    txtBold:{
     fontSize: 14,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    marginVertical:5
    },
    progressBar: {
       flexDirection: 'row',

@@ -44,17 +44,6 @@ const ViewAllVoc = () => {
       <View
         key={item.id}
         style={styles.container}>
-         <View style={styles.unitContainer}>
-        <Text style={styles.txtTitle}> Unit {item.unit}</Text>
-      </View>
-      <View style={styles.wordCountContainer}>
-       <Text>50 words </Text>
-       <View style={styles.progressBar}>
-        
-         <View style={{backgroundColor:"blue",width:'10%'}}></View>
-      </View>
-       <Text> 25/50</Text>
-      </View>
       <View  style={styles.detailContainer}>
         <Text style={styles.txtVoc}>{item.voc_eng} ({item.voc_type})</Text>
         <Text style={styles.txtBold}> Meaning </Text>
@@ -64,30 +53,26 @@ const ViewAllVoc = () => {
          <Text style={styles.txtBold}> Example</Text>
         <Text style={styles.txtParagraph}>{item.voc_example}</Text>
       </View>
-      <View style={styles.btnContainer}>
-      <TouchableOpacity
-        style={styles.tinyLogo}>
-        <Image
-        style={styles.tinyLogo}
-        source={require('@icons/ic_backward.png')}
-        ></Image>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.tinyLogo}>
-        <Image
-        style={styles.tinyLogo}
-        source={require('@icons/ic_forward.png')}
-        ></Image>
-      </TouchableOpacity>
-      </View>
       </View>
     );
   };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
+       <View style={styles.unitContainer}>
+            <Text style={styles.txtTitle}> Unit 1</Text>
+       </View>
+       <View style={styles.wordCountContainer}>
+       <Text>{flatListItems.length} words </Text>
+       <View style={styles.progressBar}>
+        
+         <View style={{backgroundColor:"blue",width:'100%'}}></View>
+      </View>
+       <Text> {flatListItems.length}/{flatListItems.length}</Text>
+      </View>
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <View style={{ flex: 1 }}>
+         
           <FlatList
             data={flatListItems}
             ItemSeparatorComponent={listViewItemSeparator}
@@ -109,10 +94,11 @@ const styles = StyleSheet.create({
     justifyContent: "center"
    },
    unitContainer: {
-     flex: 0.08
+     flex: 0.05,
+     padding: 10
    },
    wordCountContainer:{
-     flex: 0.15,
+     flex: 0.05,
      justifyContent: "center",
      alignItems: "center",
      flexDirection: 'row'

@@ -9,6 +9,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from './pages/HomeScreen';
 import ViewAllVoc from './pages/ViewAllVoc';
+import Category  from './pages/Category';
+import GradeSevenUnits from './pages/GradeSevenUnits';
 
 const Stack = createStackNavigator();
 
@@ -20,15 +22,39 @@ const App = () => {
           name="HomeScreen"
           component={HomeScreen}
           options={{
-            title: 'Home', //Set Header Title
+            title: 'Vocabulary', //Set Header Title
             headerStyle: {
-              backgroundColor: '#f4511e', //Set Header color
+              backgroundColor: 'skyblue', //Set Header color
             },
-            headerTintColor: '#fff', //Set Header text color
             headerTitleStyle: {
               fontWeight: 'bold', //Set Header text style
             },
           }}
+        />
+        <Stack.Screen
+          name="GradeSevenUnits"
+          component={GradeSevenUnits}
+          options={{
+            title: 'Grade 7', //Set Header Title
+            headerStyle: {
+              backgroundColor: 'skyblue', //Set Header color
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Category"
+          component={Category}
+          options={({ route }) => ({ title: route.params.title,
+            headerStyle: {
+              backgroundColor: 'skyblue', //Set Header color
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+           })}
         />
         <Stack.Screen
           name="ViewAll"
@@ -36,9 +62,8 @@ const App = () => {
           options={{
             title: 'View All Vocabulary', //Set Header Title
             headerStyle: {
-              backgroundColor: '#f4511e', //Set Header color
+              backgroundColor: 'skyblue', //Set Header color
             },
-            headerTintColor: '#fff', //Set Header text color
             headerTitleStyle: {
               fontWeight: 'bold', //Set Header text style
             },

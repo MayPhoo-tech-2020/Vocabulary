@@ -8,7 +8,7 @@ import Mytext from './components/Mytext';
 
 
 const Category = ({ navigation, route }) => {
-    const {gradeId}  = route.params;
+    const {unitId}  = route.params;
     const {title} = route.params;
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -16,7 +16,7 @@ const Category = ({ navigation, route }) => {
         <View style={{ flex: 1 }}>
           <Mybutton
             title="Learn"
-            customClick={() => navigation.navigate('ViewAll')}
+            customClick={() => navigation.navigate('Learn',{unitId:1})}
           />
            <Mybutton
             title="Test"

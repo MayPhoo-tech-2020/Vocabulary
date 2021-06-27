@@ -11,6 +11,7 @@ import HomeScreen from './pages/HomeScreen';
 import ViewAllVoc from './pages/ViewAllVoc';
 import Category  from './pages/Category';
 import GradeSevenUnits from './pages/GradeSevenUnits';
+import Learn  from './pages/Learn';
 
 const Stack = createStackNavigator();
 
@@ -55,6 +56,19 @@ const App = () => {
               fontWeight: 'bold', //Set Header text style
             },
            })}
+        />
+        <Stack.Screen
+          name="Learn"
+          component={Learn}
+          options={{
+            title: 'Learn', //Set Header Title
+            headerStyle: {
+              backgroundColor: 'skyblue', //Set Header color
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
         />
         <Stack.Screen
           name="ViewAll"

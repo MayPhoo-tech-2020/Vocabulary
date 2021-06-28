@@ -1,31 +1,13 @@
-import React, {useState,useEffect } from 'react';
+import React, {useState} from 'react';
 import { Text, View, Image, TouchableHighlight, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { openDatabase } from 'react-native-sqlite-storage';
-
-var db = openDatabase({ name: 'vocabulary.db'})
 
 const Learn = ({route}) => {
     const {unitId} = route.params;
-    let [vocabularyData, setVocabularyData] = useState([]);
+    const {vocabularyData} = route.params;
     let [clickCount, setClickCount]=useState(1);
     let [progress, setProgress]=useState("2%");
     let [progressClickCount, setProgressClickCount]=useState(1);
     let progressCount = 0;
-    useEffect(() => {
-      db.transaction((tx) => {
-            tx.executeSql(
-                'SELECT * FROM g7_voc where unit = ?',
-                [unitId],
-                (tx, results) => {
-                    var temp = [];
-                    for (let i = 0; i < results.rows.length; ++i)
-                      temp.push(results.rows.item(i));
-                    setVocabularyData(temp);
-                  }
-                
-              );
-            });
-          }, []);
     const onPressNext = () =>{ 
         setClickCount(clickCount<50?clickCount => clickCount = clickCount + 1:clickCount);
         if((progressCount<=clickCount*2)
@@ -39,7 +21,7 @@ const Learn = ({route}) => {
         
     }
     const OnPressPrevious = () =>{
-      setClickCount(clickCount>0?clickCount => clickCount = clickCount - 1:clickCount);
+      setClickCount(clickCount>1?clickCount => clickCount = clickCount - 1:clickCount);
     }
     
     return(        
@@ -56,23 +38,23 @@ const Learn = ({route}) => {
         </View>
         <View  style={styles.detailContainer}>
         <View style={styles.speakerContainer}>
-         <Text style={styles.txtVoc}>vocData.length</Text>
+         <Text style={styles.txtVoc}>{vocabularyData[clickCount-1].voc_eng}({vocabularyData[clickCount-1].voc_type})</Text>
          <TouchableHighlight style={styles.speakerLogo}>
                <Image style={styles.speakerLogo}source={require('@icons/ic_speaker.png')}></Image>
          </TouchableHighlight>
         </View> 
         <Text style={styles.txtBold}> Meaning </Text>
         <View style={styles.ttsSpeakerContainer}>
-          <Text style={styles.txtParagraph}>vocData.length</Text>
+          <Text style={styles.txtParagraph}>{vocabularyData[clickCount-1].voc_meaning}</Text>
           <TouchableHighlight style={styles.tinnyLogo}>
                <Image style={styles.tinnyLogo}source={require('@icons/ic_speaker_1.png')}></Image>
          </TouchableHighlight>
         </View>          
         <Text style={styles.txtBold}> Translation </Text>
-        <Text style={styles.txtParagraph}>vocData.length</Text>
+        <Text style={styles.txtParagraph}>{vocabularyData[clickCount-1].voc_mm}</Text>
         <Text style={styles.txtBold}> Example</Text>          
         <View style={styles.ttsSpeakerContainer}>
-          <Text style={styles.txtParagraph}>vocData.length</Text> 
+          <Text style={styles.txtParagraph}>{vocabularyData[clickCount-1].voc_example}</Text> 
           <TouchableHighlight style={styles.tinnyLogo}>
                <Image style={styles.tinnyLogo}source={require('@icons/ic_speaker_1.png')}></Image>
           </TouchableHighlight>

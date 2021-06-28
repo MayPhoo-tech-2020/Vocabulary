@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { Text, View, Image, TouchableHighlight, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { Text, View, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import Tts from 'react-native-tts';
 
 const Learn = ({route}) => {
     const {unitId} = route.params;
@@ -8,6 +9,32 @@ const Learn = ({route}) => {
     let [progress, setProgress]=useState("2%");
     let [progressClickCount, setProgressClickCount]=useState(1);
     let progressCount = 0;
+    var textSpeak = "Hello";
+
+    const Speak = () => {
+      const txt = textSpeak;
+      Tts.setDefaultRate(0.4);
+      Tts.setDefaultPitch(0.8);
+      Tts.speak(txt, {
+        androidParams: {
+          KEY_PARAM_PAN: -1,
+          KEY_PARAM_VOLUME: 0.5,
+          KEY_PARAM_STREAM: 'STREAM_MUSIC',
+        },
+      });
+    }
+    const OnPressVoc = () => {
+      textSpeak = vocabularyData[clickCount-1].voc_eng;
+      Speak();
+    }
+    const OnPressMeaning = () => {
+      textSpeak = vocabularyData[clickCount-1].voc_meaning;
+      Speak();
+    }
+    const OnPressExample = () => {
+      textSpeak = vocabularyData[clickCount-1].voc_example;
+      Speak();
+    }
     const onPressNext = () =>{ 
         setClickCount(clickCount<50?clickCount => clickCount = clickCount + 1:clickCount);
         if((progressCount<=clickCount*2)
@@ -39,25 +66,40 @@ const Learn = ({route}) => {
         <View  style={styles.detailContainer}>
         <View style={styles.speakerContainer}>
          <Text style={styles.txtVoc}>{vocabularyData[clickCount-1].voc_eng}({vocabularyData[clickCount-1].voc_type})</Text>
-         <TouchableHighlight style={styles.speakerLogo}>
-               <Image style={styles.speakerLogo}source={require('@icons/ic_speaker.png')}></Image>
-         </TouchableHighlight>
+         <TouchableOpacity
+        style={styles.speakerLogo}  onPress={OnPressVoc}>
+       
+        <Image
+        style={styles.speakerLogo}   
+        source={require('@icons/ic_speaker.png')}
+        ></Image>
+      </TouchableOpacity>
         </View> 
         <Text style={styles.txtBold}> Meaning </Text>
         <View style={styles.ttsSpeakerContainer}>
           <Text style={styles.txtParagraph}>{vocabularyData[clickCount-1].voc_meaning}</Text>
-          <TouchableHighlight style={styles.tinnyLogo}>
-               <Image style={styles.tinnyLogo}source={require('@icons/ic_speaker_1.png')}></Image>
-         </TouchableHighlight>
+          <TouchableOpacity
+        style={styles.tinnyLogo}  onPress={OnPressMeaning}>
+       
+        <Image
+        style={styles.tinnyLogo}   
+        source={require('@icons/ic_speaker_1.png')}
+        ></Image>
+      </TouchableOpacity>
         </View>          
         <Text style={styles.txtBold}> Translation </Text>
         <Text style={styles.txtParagraph}>{vocabularyData[clickCount-1].voc_mm}</Text>
         <Text style={styles.txtBold}> Example</Text>          
         <View style={styles.ttsSpeakerContainer}>
           <Text style={styles.txtParagraph}>{vocabularyData[clickCount-1].voc_example}</Text> 
-          <TouchableHighlight style={styles.tinnyLogo}>
-               <Image style={styles.tinnyLogo}source={require('@icons/ic_speaker_1.png')}></Image>
-          </TouchableHighlight>
+          <TouchableOpacity
+        style={styles.tinnyLogo}  onPress={OnPressExample}>
+       
+        <Image
+        style={styles.tinnyLogo}   
+        source={require('@icons/ic_speaker_1.png')}
+        ></Image>
+      </TouchableOpacity>
         </View>                
       </View>
       <View style={styles.btnContainer}>

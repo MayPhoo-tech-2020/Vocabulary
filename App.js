@@ -12,6 +12,9 @@ import ViewAllVoc from './pages/ViewAllVoc';
 import Category  from './pages/Category';
 import GradeSevenUnits from './pages/GradeSevenUnits';
 import Learn  from './pages/Learn';
+import Test from './pages/Test';
+import Choose from './pages/Choose';
+import Match from './pages/Match';
 
 const Stack = createStackNavigator();
 
@@ -62,6 +65,45 @@ const App = () => {
           component={Learn}
           options={{
             title: 'Learn', //Set Header Title
+            headerStyle: {
+              backgroundColor: 'skyblue', //Set Header color
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Test"
+          component={Test}
+          options={{
+            title: 'Test', //Set Header Title
+            headerStyle: {
+              backgroundColor: 'skyblue', //Set Header color
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Choose"
+          component={Choose}
+          options={{
+            title: 'Choose', //Set Header Title
+            headerStyle: {
+              backgroundColor: 'skyblue', //Set Header color
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Match"
+          component={Match}
+          options={{
+            title: 'Match', //Set Header Title
             headerStyle: {
               backgroundColor: 'skyblue', //Set Header color
             },

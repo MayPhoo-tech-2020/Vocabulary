@@ -1,10 +1,12 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
-const Match = () => {
+const Match = ({route}) => {
+  const {unitId} = route.params;
+  const {vocabularyData} = route.params;
   return (
     <Text style={styles.baseText}>
-      I am bold
+      {vocabularyData[0].voc_mm}
       <Text style={styles.innerText}> and red</Text>
     </Text>
   );

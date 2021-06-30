@@ -1,7 +1,9 @@
 import React from "react";
 import { View, Text, Button } from "react-native";
 
-const Test = ({ navigation }) => {
+const Test = ({ navigation,route }) => {
+  const {unitId} = route.params;
+  const {vocabularyData} = route.params;
   return (
     <View
       style={{
@@ -14,11 +16,11 @@ const Test = ({ navigation }) => {
       <View style={{ backgroundColor: "red", flex: 0.5 }} />
       <Button
           title="Choose"
-          onPress={() => navigation.navigate('Choose')}
+          onPress={() => navigation.navigate('Choose',{unitId, vocabularyData})}
         />
         <Button
           title="Match"
-          onPress={() => navigation.navigate('Match')}
+          onPress={() => navigation.navigate('Match',{unitId, vocabularyData})}
         />
     </View>
   );

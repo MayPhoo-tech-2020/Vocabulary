@@ -11,6 +11,14 @@ const Learn = ({route}) => {
     let progressCount = 0;
     var textSpeak = "Hello";
 
+    Tts.getInitStatus().then(() => {
+      // ...
+    }, (err) => {
+      if (err.code === 'no_engine') {
+        Tts.requestInstallEngine();
+      }
+    });
+
     const Speak = () => {
       const txt = textSpeak;
       Tts.setDefaultRate(0.4);
@@ -51,7 +59,8 @@ const Learn = ({route}) => {
       setClickCount(clickCount>1?clickCount => clickCount = clickCount - 1:clickCount);
     }
     
-    return(        
+    if(vocabularyData.length>0){
+      return(        
         <View style={styles.container}>
         <View style={styles.unitContainer}>
           <Text style={styles.txtTitle}> Unit {unitId}</Text>
@@ -122,6 +131,13 @@ const Learn = ({route}) => {
       </View>
       </View>
     );
+    }
+    else{
+      return(
+        Alert.alert("Not Availabel Now")
+      );
+      
+    }
 };
 const styles = StyleSheet.create({
     container: {

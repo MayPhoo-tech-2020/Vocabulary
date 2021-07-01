@@ -51,20 +51,17 @@ const Choose = ({route}) => {
   }
   return (
     <View style={styles.container}>
-    <Text>Please choose correct word</Text>
-      <View style={styles.countContainer}>
-        <Text>Inded ix {word}</Text>
-        <Text>{vocabularyData[word].voc_eng}</Text>
-        <Text>Choose word list is {chooseWord[0].voc_eng}</Text>
-        <Text>Choose word list is {chooseWord[1].voc_eng}</Text>
-        <Text>Choose word list is {chooseWord[2].voc_eng}</Text>
+    <Text style={styles.txtSubTitle}>Please choose correct word</Text>
+      <View style={styles.questionContainer}>
+        <Text>{vocabularyData[word].voc_meaning}</Text>
       </View>
       <View style={styles.btnContainer}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
             if(chooseWord[0].voc_eng == vocabularyData[word].voc_eng){
-              Alert.alert("Congrate")
+              Alert.alert("Congrate");
+              setChooseWord(getChooseWord);
 
             }
           }}
@@ -75,7 +72,8 @@ const Choose = ({route}) => {
           style={styles.button}
           onPress={() => {
             if(chooseWord[1].voc_eng == vocabularyData[word].voc_eng){
-              Alert.alert("Congrate")
+              Alert.alert("Congrate");
+              setChooseWord(getChooseWord);
 
             }
           }}
@@ -86,14 +84,15 @@ const Choose = ({route}) => {
           style={styles.button}
           onPress={() => {
             if(chooseWord[2].voc_eng == vocabularyData[word].voc_eng){
-              Alert.alert("Congrate")
+              Alert.alert("Congrate");
+              setChooseWord(getChooseWord);
 
             }
           }}
         >
         <Text>{chooseWord[2].voc_eng}</Text>
         </TouchableOpacity>
-        </View>
+      </View>
     </View>
   );
 };
@@ -101,27 +100,35 @@ const Choose = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+  },
+  questionContainer: {
+    flex:0.1,
+    borderWidth: 1,
+    borderRadius: 30,
+    marginVertical:10,
+    backgroundColor: "#f0f8ff",
+    justifyContent: 'center',
+    padding: 10
   },
   btnContainer:{
-  flex: 0.5,
+  flex: 0.8,
   justifyContent: "center",
   alignItems: "center",
   },
   button: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    width:"50%",
-    height:"50%",
+    backgroundColor: "#f0f8ff",
+    width:"60%",
+    height:"30%",
     flexDirection: 'row',
     marginVertical: 10,
     padding: 10
   },
-  countContainer: {
-    flex:0.3,
-    padding: 10
-  }
+  txtSubTitle:{
+    fontSize: 16
+  },
 });
 
 export default Choose;

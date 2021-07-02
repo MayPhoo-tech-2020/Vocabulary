@@ -51,7 +51,7 @@ const Choose = ({route}) => {
   }
   return (
     <View style={styles.container}>
-    <Text style={styles.txtSubTitle}>Please choose correct word</Text>
+    <Text style={styles.txtSubTitle}>Choose correct word</Text>
       <View style={styles.questionContainer}>
         <Text>{vocabularyData[word].voc_meaning}</Text>
       </View>

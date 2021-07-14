@@ -39,7 +39,7 @@ const Category = ({ navigation, route }) => {
           />
            <Mybutton
             title="View All Vocabulary"
-            customClick={() => navigation.navigate('ViewAll')}
+            customClick={() => navigation.navigate('ViewAll',{unitId, vocabularyData})}
           />          
         </View>
       </View>

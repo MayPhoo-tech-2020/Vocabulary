@@ -6,25 +6,20 @@ import { View, Text, SafeAreaView } from 'react-native';
 import Mybutton from './components/Mybutton';
 import Mytext from './components/Mytext';
 
-const HomeScreen = ({ navigation }) => {
+const UpperSecondaryScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <View style={{ flex: 1 }}>
+           <Mybutton
+            title="Grade 10"
+            customClick={() => navigation.navigate('Category',{gradeId:10})}
+            customDisable={true}
+          />
           <Mybutton
-            title="Primary"
-            customClick={() => navigation.navigate('PrimaryScreen')}
-            
-          />
-           <Mybutton
-            title="Lower Secondary"
-            customClick={() => navigation.navigate('LowerSecondaryScreen')}
-           
-          />
-           <Mybutton
-            title="Upper Secondary"
-            customClick={() => navigation.navigate('UpperSecondaryScreen')}
-           
+            title="Grade 11"
+            customClick={() => navigation.navigate('Category',{gradeId:11})}
+            customDisable={true}
           />
         </View>
       </View>
@@ -32,4 +27,4 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-export default HomeScreen;
+export default UpperSecondaryScreen;

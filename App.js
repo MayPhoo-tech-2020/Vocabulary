@@ -15,7 +15,9 @@ import Learn  from './pages/Learn';
 import Test from './pages/Test';
 import Choose from './pages/Choose';
 import Match from './pages/Match';
-
+import PrimaryScreen from './pages/PrimaryScreen';
+import LowerSecondaryScreen from './pages/LowerSecondaryScreen';
+import UpperSecondaryScreen from './pages/UpperSecondaryScreen';
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -27,6 +29,45 @@ const App = () => {
           component={HomeScreen}
           options={{
             title: 'Vocabulary', //Set Header Title
+            headerStyle: {
+              backgroundColor: 'skyblue', //Set Header color
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
+        />
+        <Stack.Screen
+          name="PrimaryScreen"
+          component={PrimaryScreen}
+          options={{
+            title: 'Primary', //Set Header Title
+            headerStyle: {
+              backgroundColor: 'skyblue', //Set Header color
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
+        />
+        <Stack.Screen
+          name="LowerSecondaryScreen"
+          component={LowerSecondaryScreen}
+          options={{
+            title: 'Lower Secondary', //Set Header Title
+            headerStyle: {
+              backgroundColor: 'skyblue', //Set Header color
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
+        />
+        <Stack.Screen
+          name="UpperSecondaryScreen"
+          component={UpperSecondaryScreen}
+          options={{
+            title: 'Upper Secondary', //Set Header Title
             headerStyle: {
               backgroundColor: 'skyblue', //Set Header color
             },

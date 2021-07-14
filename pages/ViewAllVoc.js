@@ -8,23 +8,13 @@ import { openDatabase } from 'react-native-sqlite-storage';
 
 var db = openDatabase({ name: 'vocabulary.db', createFromLocation : 1})
 
-const ViewAllVoc = () => {
+const ViewAllVoc = ({route}) => {
+  const {unitId} = route.params;
+  const {vocabularyData} = route.params;
   let [flatListItems, setFlatListItems] = useState([]);
 
   useEffect(() => {
-    db.transaction((tx) => {
-      tx.executeSql(
-        'SELECT * FROM g7_voc',
-        [],
-        (tx, results) => {
-          var temp = [];
-          for (let i = 0; i < results.rows.length; ++i)
-            temp.push(results.rows.item(i));
-            console.log("Name is "+results.rows.length);
-          setFlatListItems(temp);
-        }
-      );
-    });
+    setFlatListItems(vocabularyData);
   }, []);
 
   let listViewItemSeparator = () => {
@@ -59,17 +49,9 @@ const ViewAllVoc = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-       <View style={styles.unitContainer}>
-            <Text style={styles.txtTitle}> Unit 1</Text>
+      <View style={styles.unitContainer}>
+            <Text style={styles.txtSubTitle}> There are {vocabularyData.length} words.</Text>
        </View>
-       <View style={styles.wordCountContainer}>
-       <Text>{flatListItems.length} words </Text>
-       <View style={styles.progressBar}>
-        
-         <View style={{backgroundColor:"blue",width:'100%'}}></View>
-      </View>
-       <Text> {flatListItems.length}/{flatListItems.length}</Text>
-      </View>
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <View style={{ flex: 1 }}>
          
@@ -88,7 +70,7 @@ const ViewAllVoc = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 5,
+    padding: 10,
     borderWidth: 1,
     borderRadius: 5,
     justifyContent: "center"

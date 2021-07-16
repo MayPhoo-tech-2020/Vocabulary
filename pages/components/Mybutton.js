@@ -8,17 +8,13 @@ import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 const Mybutton = (props) => {
   return (
     <View style={styles.centeredView}>
-        <View style={styles.centeredView}>
             <TouchableOpacity
             onPress={props.customClick}
             disabled={props.customDisable}
+            style={styles.modalView}
             >
-              <View style={styles.modalView}>
                 <Text style={styles.modalText}> {props.title} </Text>                            
-              </View>
             </TouchableOpacity>
-              
-        </View>
     </View>
   );
 };
@@ -30,7 +26,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalView: {
+    flex: 0.55,
     backgroundColor: "white",
+    width:"55%",
+    height:"50%",
     borderRadius: 20,
     padding: 65,
     alignItems: "center",

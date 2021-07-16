@@ -1,8 +1,8 @@
 // Example: Example of SQLite Database in React Native
 // https://aboutreact.com/example-of-sqlite-database-in-react-native
 
-import React, { useEffect, useState } from 'react';
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity,View } from "react-native";
+import React, { useEffect, useState,useRef,useLayoutEffect} from 'react';
+import { FlatList, Button, DrawerLayoutAndroid, SafeAreaView,Pressable, StatusBar, StyleSheet, Text,Image, TouchableOpacity,View } from "react-native";
 import Mybutton from './components/Mybutton';
 import Mytext from './components/Mytext';
 
@@ -55,7 +55,23 @@ const DATA = [
 
 const HomeScreen = ({ navigation }) => {
   const [selectedId, setSelectedId] = useState(null);
-  
+  const drawer = useRef(null);
+  const OnPressMenu = () =>{
+    if(drawer.current==null){
+      console.log("Drawer")
+    }
+      drawer.current.openDrawer(); 
+  }
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => OnPressMenu()}>
+            <Image source={require('../assets/ic_menu_48.png')}>
+            </Image>
+        </TouchableOpacity>
+        )       
+    });
+  }, [navigation]);
   const renderItem = ({ item }) => {
     const backgroundColor = item.id === selectedId ? "#87ceeb" : "#f0f8ff";
     const color = item.id === selectedId ? 'white' : 'black';
@@ -73,32 +89,66 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
   <View style={styles.centeredView}>
         <View style={styles.centeredView}>
            <TouchableOpacity 
-               onPress={() => navigation.navigate('GradeSevenUnits',{gradeId:item.id})} 
-               style={[styles.item,backgroundColor]}>
-              <View style={styles.modalView}>
+               onPress={() => navigation.navigate('GradeUnits',{gradeId:item.id})} 
+               style={[styles.modalView,backgroundColor]}>
                 <Text style={[styles.title, textColor]}>{item.title}</Text>
-              </View>  
           </TouchableOpacity>
         </View>
     </View>
 );
+const navigationView = () => (
+  <View style={styles.container}>
+    <TouchableOpacity style={styles.drawerContainer}>
+      <Image style={styles.drawerIcon} source={require('../assets/ic_about_40.png')}></Image>
+      <Text style={styles.drawerText}>About</Text>
+    </TouchableOpacity>
+    
+    <TouchableOpacity style={styles.drawerContainer}>
+      <Image style={styles.drawerIcon} source={require('../assets/ic_rating_40.png')}></Image>
+      <Text style={styles.drawerText}>Rate us</Text>
+    </TouchableOpacity>
+    <TouchableOpacity style={styles.drawerContainer}>
+      <Image style={styles.drawerIcon} source={require('../assets/ic_mailbox_40.png')}></Image>
+      <Text style={styles.drawerText}>Contact</Text>
+    </TouchableOpacity>
+    
+  </View>
+);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
+    <DrawerLayoutAndroid
+      ref={drawer}
+      drawerWidth={300}
+      renderNavigationView={navigationView}>
+      <SafeAreaView style={styles.container}>
+        <FlatList
         data={DATA}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         extraData={selectedId}
-      />
-    </SafeAreaView>
+       />
+      </SafeAreaView>
+    </DrawerLayoutAndroid>
+    
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+  },
+  drawerContainer:{
+    flex:0.1,
+    marginTop:10,
+    flexDirection: "row",
+    alignItems:"center"
+  },
+  drawerText:{
+    fontSize:20,
+    marginHorizontal:20
+  },
+  drawerIcon:{
+    marginHorizontal:10
   },
   item: {
     marginVertical: 8,
@@ -121,6 +171,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 70,
     alignItems: "center",
+    marginBottom:10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

@@ -1,5 +1,3 @@
-// Example: Example of SQLite Database in React Native
-// https://aboutreact.com/example-of-sqlite-database-in-react-native
 import 'react-native-gesture-handler';
 
 import * as React from 'react';
@@ -10,17 +8,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './pages/HomeScreen';
 import ViewAllVoc from './pages/ViewAllVoc';
 import Category  from './pages/Category';
-import GradeSevenUnits from './pages/GradeSevenUnits';
+import GradeSevenUnits from './pages/GradeUnits';
 import Learn  from './pages/Learn';
 import Test from './pages/Test';
 import Choose from './pages/Choose';
 import Match from './pages/Match';
-import PrimaryScreen from './pages/PrimaryScreen';
-import LowerSecondaryScreen from './pages/LowerSecondaryScreen';
-import UpperSecondaryScreen from './pages/UpperSecondaryScreen';
-const Stack = createStackNavigator();
 
+const Stack = createStackNavigator();
 const App = () => {
+  
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="HomeScreen">
@@ -34,53 +30,14 @@ const App = () => {
             },
             headerTitleStyle: {
               fontWeight: 'bold', //Set Header text style
-            },
+            },       
           }}
         />
-        <Stack.Screen
-          name="PrimaryScreen"
-          component={PrimaryScreen}
-          options={{
-            title: 'Primary', //Set Header Title
-            headerStyle: {
-              backgroundColor: 'skyblue', //Set Header color
-            },
-            headerTitleStyle: {
-              fontWeight: 'bold', //Set Header text style
-            },
-          }}
-        />
-        <Stack.Screen
-          name="LowerSecondaryScreen"
-          component={LowerSecondaryScreen}
-          options={{
-            title: 'Lower Secondary', //Set Header Title
-            headerStyle: {
-              backgroundColor: 'skyblue', //Set Header color
-            },
-            headerTitleStyle: {
-              fontWeight: 'bold', //Set Header text style
-            },
-          }}
-        />
-        <Stack.Screen
-          name="UpperSecondaryScreen"
-          component={UpperSecondaryScreen}
-          options={{
-            title: 'Upper Secondary', //Set Header Title
-            headerStyle: {
-              backgroundColor: 'skyblue', //Set Header color
-            },
-            headerTitleStyle: {
-              fontWeight: 'bold', //Set Header text style
-            },
-          }}
-        />
-        <Stack.Screen
-          name="GradeSevenUnits"
+         <Stack.Screen
+          name="GradeUnits"
           component={GradeSevenUnits}
           options={{
-            title: 'Grade 7', //Set Header Title
+            title: 'Grade', //Set Header Title
             headerStyle: {
               backgroundColor: 'skyblue', //Set Header color
             },

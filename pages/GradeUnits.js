@@ -3,7 +3,7 @@ import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity }
 import { openDatabase } from 'react-native-sqlite-storage';
 
 var db = openDatabase({ name: 'vocabulary.db', createFromLocation:1})
-const GradeSevenUnits = ({ navigation, route }) => {
+const GradeUnits = ({ navigation, route }) => {
   const {gradeId}  = route.params;
   const [selectedId, setSelectedId] = useState(null);
   let [flatListItems, setFlatListItems] = useState([]);
@@ -76,4 +76,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GradeSevenUnits;
+export default GradeUnits;

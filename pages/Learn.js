@@ -80,7 +80,7 @@ const Learn = ({route}) => {
        
         <Image
         style={styles.speakerLogo}   
-        source={require('@btnicon/ic_speaker.png')}
+        source={require('../assets/ic_speaker.png')}
         ></Image>
       </TouchableOpacity>
         </View> 
@@ -92,7 +92,7 @@ const Learn = ({route}) => {
        
         <Image
         style={styles.tinnyLogo}   
-        source={require('@btnicon/ic_speaker_1.png')}
+        source={require('../assets/ic_speaker_1.png')}
         ></Image>
       </TouchableOpacity>
         </View>          
@@ -106,7 +106,7 @@ const Learn = ({route}) => {
        
         <Image
         style={styles.tinnyLogo}   
-        source={require('@btnicon/ic_speaker_1.png')}
+        source={require('../assets/ic_speaker_1.png')}
         ></Image>
       </TouchableOpacity>
         </View>                
@@ -117,7 +117,7 @@ const Learn = ({route}) => {
        
         <Image
         style={styles.btnLogo}   
-        source={require('@btnicon/ic_backward.png')}
+        source={require('../assets/ic_backward.png')}
         ></Image>
       </TouchableOpacity>
       <TouchableOpacity
@@ -125,7 +125,7 @@ const Learn = ({route}) => {
          
         <Image
         style={styles.btnLogo}     
-        source={require('@btnicon/ic_forward.png')}
+        source={require('../assets/ic_forward.png')}
         ></Image>
       </TouchableOpacity>
       </View>

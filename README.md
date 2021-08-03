@@ -1,19 +1,10 @@
 # Vocabulary
 
-This is the text to speech test android application of react native. It uses **react-native-tts** text to speech library.
-
-## Install Text-To-Speech
-
-- npm install --save react-native-tts
-- react-native link react-native-tts
-- import Tts from 'react-native-tts';
-## Install SQLite
-- npm install --save react-native-sqlite-storage
-- react-native link react-native-sqlite-storage
-- import { openDatabase } from 'react-native-sqlite-storage';
-## Install react navigation
-- npm install @react-navigation/native @react-navigation/stack
-- npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
-- import 'react-native-gesture-handler';
-- import { NavigationContainer } from '@react-navigation/native';
-- [Here](https://reactnavigation.org/docs/getting-started/) is navigation example.
+- It intends to study vocabulary for garde1-11 students.
+- It includes mainly two features (Learn and Test).
+- Learning section contains details of each word unit by unit.
+- Testing section includes two exercises (Choose and Match).
+- It is developed with React Native.
+  ![This is the screenshot of main page!](images/main.jpg 'Main Page Screenshot')
+  ![This is the screenshot of unit page!](images/unit.jpg 'Unit Page Screenshot')
+  ![This is the screenshot of unit page!](images/three_categ.jpg 'Unit Page Screenshot')

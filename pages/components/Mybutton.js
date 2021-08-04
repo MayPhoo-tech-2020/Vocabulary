@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 65,
     alignItems: "center",
+    justifyContent: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
   },
   modalText: {
     textAlign: "center",
+    alignItems: "center",
     fontSize: 20
   }
 });

@@ -73,7 +73,7 @@ const HomeScreen = ({ navigation }) => {
     });
   }, [navigation]);
   const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? "#87ceeb" : "#f0f8ff";
+    const backgroundColor = item.id === selectedId ? "#87ceeb" : "white";
     const color = item.id === selectedId ? 'white' : 'black';
 
     return (

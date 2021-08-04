@@ -1,28 +1,25 @@
 import React from "react";
-import { View, Text, Button, StyleSheet,TouchableOpacity } from "react-native";
+import { View, StyleSheet,SafeAreaView} from "react-native";
+import Mybutton from './components/Mybutton';
 
 const Test = ({ navigation,route }) => {
   const {unitId} = route.params;
   const {vocabularyData} = route.params;
   return (
-    <View
-      style={styles.container}
-    >
-      <View style={styles.btnContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('Choose',{unitId, vocabularyData})}
-        >
-          <Text>Choose</Text>
-        </TouchableOpacity>
-         <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('Match',{unitId, vocabularyData})}>
-        <Text>Match</Text>
-        </TouchableOpacity>
-         
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: 'white' }}>
+        <View style={{ flex: 1 }}>
+          <Mybutton
+            title="Choose"
+            customClick={() => navigation.navigate('Choose',{unitId, vocabularyData})}
+          />
+           <Mybutton
+            title="Match"
+            customClick={() => navigation.navigate('Match',{unitId, vocabularyData})}
+          />
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

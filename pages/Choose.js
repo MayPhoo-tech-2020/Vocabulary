@@ -49,6 +49,13 @@ const Choose = ({route}) => {
     temp = randomUniqueNum(3,3,temp);
     return temp;
   }
+  function checkAnswer(clickedWord){
+    if(vocabularyData[word].voc_eng == clickedWord){
+      Alert.alert("Congrate");
+      setChooseWord(getChooseWord);
+    }
+
+  }
   return (
     <View style={styles.container}>
     <Text style={styles.txtSubTitle}>Choose correct word</Text>
@@ -58,37 +65,19 @@ const Choose = ({route}) => {
       <View style={styles.btnContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => {
-            if(chooseWord[0].voc_eng == vocabularyData[word].voc_eng){
-              Alert.alert("Congrate");
-              setChooseWord(getChooseWord);
-
-            }
-          }}
+          onPress={() => {checkAnswer(chooseWord[0].voc_eng);}}
         >
           <Text>{chooseWord[0].voc_eng}</Text>
         </TouchableOpacity>
          <TouchableOpacity
           style={styles.button}
-          onPress={() => {
-            if(chooseWord[1].voc_eng == vocabularyData[word].voc_eng){
-              Alert.alert("Congrate");
-              setChooseWord(getChooseWord);
-
-            }
-          }}
+          onPress={() => {checkAnswer(chooseWord[1].voc_eng);}}
       >
         <Text>{chooseWord[1].voc_eng}</Text>
         </TouchableOpacity>
          <TouchableOpacity
           style={styles.button}
-          onPress={() => {
-            if(chooseWord[2].voc_eng == vocabularyData[word].voc_eng){
-              Alert.alert("Congrate");
-              setChooseWord(getChooseWord);
-
-            }
-          }}
+          onPress={() => {checkAnswer(chooseWord[2].voc_eng);}}
         >
         <Text>{chooseWord[2].voc_eng}</Text>
         </TouchableOpacity>

@@ -14,8 +14,7 @@ const ViewAllVoc = ({route}) => {
   let [flatListItems, setFlatListItems] = useState([]);
 
   useEffect(() => {
-    setFlatListItems(vocabularyData);
-  }, []);
+    setFlatListItems(vocabularyData);}, []);
 
   let listViewItemSeparator = () => {
     return (
